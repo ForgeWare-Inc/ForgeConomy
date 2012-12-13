@@ -124,22 +124,7 @@ public final class ForgeConomy extends JavaPlugin implements Listener{
     }
     
     private void bankSelectAccount(Player player, String name){
-		BankAccount account = null;
-		for(Bank eBank : banks){
-			for(BankAccount eAccount : eBank.getAccounts()){
-				if(eAccount.getOwner().equals(player.getName())){
-					account = eAccount;
-					break;
-				}
-			}
-			if(account != null){
-				break;
-			}
-		}
-		if(userSelectedAccount.containsKey(player.getName())){
-			userSelectedAccount.remove(player.getName());
-		}
-		userSelectedAccount.put(player.getName(), name);
+    	//check if a bank is selected and check selected bank for the requested account
     }
     
     private void shop(String[] args){
