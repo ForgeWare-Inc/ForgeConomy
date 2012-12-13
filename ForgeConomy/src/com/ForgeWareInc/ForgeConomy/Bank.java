@@ -37,4 +37,8 @@ public class Bank{
 		BankAccount account = new BankAccount(owner, startBalance);
 		Accounts.add(account);
 	}
+	
+	public ArrayList<BankAccount> getAccounts(){
+		return Accounts;
+	}
 }

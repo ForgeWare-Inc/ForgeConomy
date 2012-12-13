@@ -12,6 +12,10 @@ public class BankAccount{
 		balance = amount;
 	}
 	
+	public BankAccount() {
+
+	}
+
 	public int getBalance(){
 		return balance;
 	}

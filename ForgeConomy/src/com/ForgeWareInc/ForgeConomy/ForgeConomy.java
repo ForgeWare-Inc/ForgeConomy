@@ -14,6 +14,7 @@ public final class ForgeConomy extends JavaPlugin implements Listener{
 	
 	ArrayList<Bank> banks = new ArrayList<Bank>();
 	HashMap<String, String> userSelectedBank = new HashMap<String, String>();
+	HashMap<String, String> userSelectedAccount = new HashMap<String, String>();
 	
 	double pluginVersion = 1.0;
 	
@@ -38,10 +39,11 @@ public final class ForgeConomy extends JavaPlugin implements Listener{
     	if(!args[0].isEmpty()){
         	//determine which sub command was called    	
         	switch(args[0].toLowerCase()){
-        		case "bank" : bank(args, player);
-        		case "shop" : shop(args);
-        		case "econ" : economy(args);
-        		case "economy" : economy(args);
+        		case "bank" 	:	bank(args, player);
+        		case "account"	:	bankAccount(args, player);
+        		case "shop" 	:	shop(args);
+        		case "econ" 	:	economy(args);
+        		case "economy" 	:	economy(args);
         	}	
     	}
     	return false;
@@ -109,6 +111,32 @@ public final class ForgeConomy extends JavaPlugin implements Listener{
     			bank.newAccount(player.getName(), 0);
     		}
     	}
+    }
+    
+    private void bankAccount(String[] args, Player player){
+    	String action = args[2].toLowerCase();
+    	switch(action){
+    		case "select"	:	bankSelectAccount(player, args[3]);
+    	}
+    }
+    
+    private void bankSelectAccount(Player player, String name){
+		BankAccount account = null;
+		for(Bank eBank : banks){
+			for(BankAccount eAccount : eBank.getAccounts()){
+				if(eAccount.getOwner().equals(player.getName())){
+					account = eAccount;
+					break;
+				}
+			}
+			if(account != null){
+				break;
+			}
+		}
+		if(userSelectedAccount.containsKey(player.getName())){
+			userSelectedAccount.remove(player.getName());
+		}
+		userSelectedAccount.put(player.getName(), name);
     }
     
     private void shop(String[] args){
