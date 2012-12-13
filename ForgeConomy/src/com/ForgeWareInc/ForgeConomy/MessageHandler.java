@@ -2,9 +2,8 @@ package com.ForgeWareInc.ForgeConomy;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
-public class MessageHandler extends JavaPlugin{
+public class MessageHandler{
 
 	public MessageHandler(){
 		

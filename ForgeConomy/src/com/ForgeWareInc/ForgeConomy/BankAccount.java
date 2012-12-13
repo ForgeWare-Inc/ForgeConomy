@@ -3,7 +3,6 @@ package com.ForgeWareInc.ForgeConomy;
 import java.util.ArrayList;
 
 import org.bukkit.ChatColor;
-import org.bukkit.plugin.java.JavaPlugin;
 
 /**
 	A class representing a bank account that supports multiple members.
@@ -13,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 	Regular members have access to the account's balance (both deposit and
 	withdraw).
 */ 
-public class BankAccount extends JavaPlugin{
+public class BankAccount{
 	
 	private ArrayList<String> members = new ArrayList<String>();
 	private int balance = 0;
