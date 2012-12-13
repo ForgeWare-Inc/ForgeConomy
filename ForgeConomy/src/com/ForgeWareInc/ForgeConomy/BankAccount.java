@@ -2,15 +2,18 @@ package com.ForgeWareInc.ForgeConomy;
 
 import java.util.ArrayList;
 
+import org.bukkit.ChatColor;
+import org.bukkit.plugin.java.JavaPlugin;
+
 /**
 	A class representing a bank account that supports multiple members.
 	All normal bank account methods (deposit, withdraw, getBalance, etc.)
 	are present. The account's owner (index 0 in ArrayList of members) has
-	additional privilages to add/remove members and delete the account.
+	additional privileges to add/remove members and delete the account.
 	Regular members have access to the account's balance (both deposit and
 	withdraw).
 */ 
-public class BankAccount{
+public class BankAccount extends JavaPlugin{
 	
 	private ArrayList<String> members = new ArrayList<String>();
 	private int balance = 0;
@@ -81,7 +84,7 @@ public class BankAccount{
 		if(!members.contains(member)){
 			members.add(member);
 		}else{
-			//already member
+			ForgeConomy.mH.showError("Your already a member of that account!", ChatColor.RED, member);
 		}
 	}
 	

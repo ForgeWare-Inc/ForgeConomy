@@ -3,6 +3,7 @@ package com.ForgeWareInc.ForgeConomy;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -15,6 +16,8 @@ public final class ForgeConomy extends JavaPlugin implements Listener{
 	ArrayList<Bank> banks = new ArrayList<Bank>();
 	HashMap<String, String> userSelectedBank = new HashMap<String, String>();
 	HashMap<String, String> userSelectedAccount = new HashMap<String, String>();
+	
+	public static MessageHandler mH = new MessageHandler();
 	
 	double pluginVersion = 1.0;
 	
@@ -145,5 +148,9 @@ public final class ForgeConomy extends JavaPlugin implements Listener{
     
     private void economy(String[] args){
     	
+    }
+    
+    public static Player getPlayerObject(String playerName){
+    	return Bukkit.getServer().getPlayer(playerName);
     }
 }
