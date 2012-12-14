@@ -1,0 +1,28 @@
+Hierarchy
+
+ForgeConomy
+	
+	PlayerPrefs:
+		String name
+		Bank selectedBank
+		BankAccount	selectedAccount
+		getPlayerName()
+		getPlayerObject(String name)
+		getSelectedBank()
+		getSelectedAccount()
+		getAccounts()
+		
+	Bank:
+		ID			: int
+		Name		: String
+		Owner		: ArrayList<String>[0]
+		Moderators	: ArrayList<String>[>0]
+		Accounts	: ArrayList<BankAccount>
+		getID()
+	
+	BankAccount:
+		ID			: int
+		Bank		: int
+		Owner		: ArrayList<String>[0]
+		Members		: ArrayList<String>[>0]
+		Balance		: double

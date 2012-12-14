@@ -13,9 +13,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ForgeConomy extends JavaPlugin implements Listener{
 	
-	ArrayList<Bank> banks = new ArrayList<Bank>();
-	HashMap<String, String> userSelectedBank = new HashMap<String, String>();
-	HashMap<String, String> userSelectedAccount = new HashMap<String, String>();
+	public static HashMap<Integer, Bank> bankIDs = new HashMap<Integer, Bank>();
+	public static HashMap<Integer, BankAccount> accountIDs = new HashMap<Integer, BankAccount>();
 	
 	public static MessageHandler mH = new MessageHandler();
 	
