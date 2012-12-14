@@ -8,11 +8,20 @@ public class PlayerPrefs extends JavaPlugin{
 	private String name = null;
 	private Bank selectedBank = null;
 	private BankAccount selectedAccount = null;
+	private Wallet wallet = null;
 	
 	public PlayerPrefs(String playerName){
 		setPlayerName(playerName);
 	}
 
+	public boolean createWallet(double amount){
+		if(wallet == null){
+			wallet = new Wallet(this.getPlayerName(), amount);
+			return true;
+		}
+		return false;
+	}
+	
 	public String getPlayerName(){
 		return name;
 	}
@@ -31,5 +40,9 @@ public class PlayerPrefs extends JavaPlugin{
 	
 	public BankAccount getSelectedAccount(){
 		return selectedAccount;
+	}
+	
+	public Wallet getWallet(){
+		return wallet;
 	}
 }

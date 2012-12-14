@@ -3,8 +3,6 @@ package com.ForgeWareInc.ForgeConomy;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
-import org.bukkit.ChatColor;
-
 public class Bank{
 	
 	private String bankName = "NEW_BANK";
@@ -16,98 +14,98 @@ public class Bank{
 	public Bank(String name, String description, String owner, int ID, boolean active){
 		bankName = name;
 		if(ID < 0){
-			generateID();
+			this.bankID = generateID();
 		}else{
-			bankID = ID;
+			this.bankID = ID;
 		}
-		bankActive = active;
-		Members.add(owner);
+		ForgeConomy.bankIDs.put(bankID, this);
+		this.bankActive = active;
+		this.Members.add(owner);
 		if(description.equals("NEW")){
-			bankDescription = "#aBank: " + name + " is owned by: " + owner;
+			this.bankDescription = "#aBank: " + name + " is owned by: " + owner;
 		}else{
-			bankDescription = description;
+			this.bankDescription = description;
 		}
 	}
 	
-	private void generateID(){
+	private int generateID(){
 		int max = 0;
 		for(Entry<Integer, Bank> key : ForgeConomy.bankIDs.entrySet()){
 			if(max < key.getKey()){
 				max = key.getKey();
 			}
 		}
-		bankID = max + 1;
-		ForgeConomy.bankIDs.put(bankID, this);
+		return max + 1;
 	}
 	
 	public String getBankName(){
-		return bankName;
+		return this.bankName;
 	}
 	
 	public int getBankID(){
-		return bankID;
+		return this.bankID;
 	}
 	
 	public String getOwner(){
-		return Members.get(0).toString();
+		return this.Members.get(0).toString();
 	}
 	
 	public String getDescription(){
-		return bankDescription;
+		return this.bankDescription;
 	}
 	
 	public boolean getBankState(){
-		return bankActive;
+		return this.bankActive;
 	}
 	
 	public void setBankName(String newName){
-		bankName = newName;
+		this.bankName = newName;
 	}
 	
 	public boolean setBankOwner(String newOwner){
-		if(!Members.get(0).toString().equals(newOwner)){
-			Members.set(0, newOwner);
+		if(!this.Members.get(0).toString().equals(newOwner)){
+			this.Members.set(0, newOwner);
 			return true;
 		}
 		return false;
 	}
 	
 	public void setDescription(String description){
-		bankDescription = description;
+		this.bankDescription = description;
 	}
 	
 	public boolean addMember(String memberName){
-		if(!Members.contains(memberName)){
-			Members.add(memberName);
+		if(!this.Members.contains(memberName)){
+			this.Members.add(memberName);
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean removeMember(String memberName){
-		if(!Members.contains(memberName)){
-			Members.remove(memberName);
+		if(!this.Members.contains(memberName)){
+			this.Members.remove(memberName);
 			return true;
 		}
 		return false;
 	}
 	
 	public void makeActive(){
-		bankActive = true;
+		this.bankActive = true;
 	}
 	
 	public void makeInactive(){
-		bankActive = false;
+		this.bankActive = false;
 	}
 	
 	public boolean isMember(String name){
-		if(Members.contains(name)){
+		if(this.Members.contains(name)){
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean isActive(){
-		return bankActive;
+		return this.bankActive;
 	}
 }

@@ -26,27 +26,27 @@ public final class ForgeConomy extends JavaPlugin implements Listener{
 	
 	@Override
     public void onEnable(){
-        getServer().getPluginManager().registerEvents(this, this);
-    	getLogger().info("[WELCOME] ForgeConomy " + pluginVersion + " enabled!");
+		this.getServer().getPluginManager().registerEvents(this, this);
+		this.getLogger().info("[WELCOME] ForgeConomy " + this.pluginVersion + " enabled!");
     }
  
     @Override
     public void onDisable() {
-        getLogger().info("[BYE] ForgeConomy " + pluginVersion + " disabled!");
+    	this.getLogger().info("[BYE] ForgeConomy " + pluginVersion + " disabled!");
     }
     
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent event){
     	String playerName = event.getPlayer().getName();
     	PlayerPrefs pR = new PlayerPrefs(playerName);
-    	playerPrefs.put(playerName, pR);
+    	ForgeConomy.playerPrefs.put(playerName, pR);
     }
     
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event){
     	String playerName = event.getPlayer().getName();
-    	if(playerPrefs.containsKey(playerName)){
-    		playerPrefs.remove(playerName);
+    	if(ForgeConomy.playerPrefs.containsKey(this.playerName)){
+    		ForgeConomy.playerPrefs.remove(this.playerName);
     	}
     }
     
