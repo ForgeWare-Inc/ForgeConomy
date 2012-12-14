@@ -84,6 +84,14 @@ public class Bank{
 		return false;
 	}
 	
+	public boolean removeMember(String memberName){
+		if(!Members.contains(memberName)){
+			Members.remove(memberName);
+			return true;
+		}
+		return false;
+	}
+	
 	public void makeActive(){
 		bankActive = true;
 	}
