@@ -5,9 +5,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class PlayerPrefs extends JavaPlugin{
 	
-	private String name;
-	private Bank selectedBank;
-	private BankAccount selectedAccount;
+	private String name = null;
+	private Bank selectedBank = null;
+	private BankAccount selectedAccount = null;
 	
 	public PlayerPrefs(String playerName){
 		setPlayerName(playerName);

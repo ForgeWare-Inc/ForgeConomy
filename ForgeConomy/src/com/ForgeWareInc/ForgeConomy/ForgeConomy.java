@@ -8,13 +8,17 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ForgeConomy extends JavaPlugin implements Listener{
 	
 	public static HashMap<Integer, Bank> bankIDs = new HashMap<Integer, Bank>();
 	public static HashMap<Integer, BankAccount> accountIDs = new HashMap<Integer, BankAccount>();
+	public static HashMap<String, PlayerPrefs> playerPrefs = new HashMap<String, PlayerPrefs>();
 	
 	public static MessageHandler mH = new MessageHandler();
 	
@@ -29,6 +33,21 @@ public final class ForgeConomy extends JavaPlugin implements Listener{
     @Override
     public void onDisable() {
         getLogger().info("[BYE] ForgeConomy " + pluginVersion + " disabled!");
+    }
+    
+    @EventHandler
+    public void onPlayerLogin(PlayerLoginEvent event){
+    	String playerName = event.getPlayer().getName();
+    	PlayerPrefs pR = new PlayerPrefs(playerName);
+    	playerPrefs.put(playerName, pR);
+    }
+    
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event){
+    	String playerName = event.getPlayer().getName();
+    	if(playerPrefs.containsKey(playerName)){
+    		playerPrefs.remove(playerName);
+    	}
     }
     
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){

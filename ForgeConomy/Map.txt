@@ -26,3 +26,54 @@ ForgeConomy
 		Owner		: ArrayList<String>[0]
 		Members		: ArrayList<String>[>0]
 		Balance		: double
+		
+Commands
+
+	forgeconomy
+	forgeconomy select
+	forgeconomy select bank %bank_name%
+	forgeconomy select account
+	forgeconomy select wallet
+	forgeconomy bank
+	forgeconomy bank create %bank_name%
+	forgeconomy bank set
+	forgeconomy bank set name
+	forgeconomy bank set description
+	forgeconomy bank account
+	forgeconomy bank account list
+	forgeconomy bank account info
+	forgeconomy bank transfer %new_owner%
+	forgeconomy bank delete
+	forgeconomy bank delete confirm
+	forgeconomy bank members
+	forgeconomy bank members add %player%
+	forgeconomy bank members remove %player%
+	forgeconomy bank members list
+	forgeconomy account
+	forgeconomy account open
+	forgeconomy account deposit
+	forgeconomy account deposit %amount%
+	forgeconomy account withdraw %amount%
+	forgeconomy account withdraw max
+	forgeconomy account balance
+	forgeconomy account close
+	forgeconomy account close_confirm
+	forgeconomy account add %player%
+	forgeconomy account remove %player%
+	forgeconomy account members
+	forgeconomy account wire %amount% %destination_account_id%
+	forgeconomy admin
+	forgeconomy admin mode
+	forgeconomy admin bank
+	forgeconomy admin bank retrieve
+	forgeconomy admin account give
+	forgeconomy admin account take
+	
+	(Admin mode allows using other commands but overrides permission check)
+	
+	(aliases)
+	forgeconomy 				> /fc
+	forgeconomy admin mode		> /fca
+	forgeconomy account			> /account
+	forgeconomy bank			> /bank
+	forgeconomy select			> /fcselect

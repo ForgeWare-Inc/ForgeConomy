@@ -1,6 +1,7 @@
 package com.ForgeWareInc.ForgeConomy;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 import org.bukkit.ChatColor;
 
@@ -14,24 +15,45 @@ import org.bukkit.ChatColor;
 */ 
 public class BankAccount{
 	
+	private int accountID = 0;
+	private int ownerBankID = 0;
 	private ArrayList<String> members = new ArrayList<String>();
-	private int balance = 0;
+	private double balance = 0;
 	
 	/**
 		Constructor; creates a bank account with an owner and a balance
 		@param user the bank account's owner and primary user
 		@param amount the bank account's initial balance
+		@param bankID the ID of the bank that owns this account
+		@param accountID the ID of the account
 	*/
-	public BankAccount(String user, int amount){
+	public BankAccount(String user, double amount, int bankID, int accountID){
 		members.add(user);
 		balance = amount;
+		if(accountID < 0){
+			this.accountID = generateID();
+		}else{
+			this.accountID = accountID;
+		}
+		ownerBankID = bankID;
+		ForgeConomy.accountIDs.put(this.accountID, this);
+	}
+	
+	private int generateID(){
+		int max = 0;
+		for(Entry<Integer, BankAccount> key : ForgeConomy.accountIDs.entrySet()){
+			if(max < key.getKey()){
+				max = key.getKey();
+			}
+		}
+		return max + 1;
 	}
 	
 	/**
 		Accessor for balance
 		@return the account's current balance
 	*/
-	public int getBalance(){
+	public double getBalance(){
 		return balance;
 	}
 	
@@ -40,14 +62,14 @@ public class BankAccount{
 		@return the account's owner
 	*/
 	public String getOwner(){
-		return members.get(0);
+		return members.get(0).toString();
 	}
 	
 	/**
 		Accessor for members
 		@return an ArrayList containing the account's members
 	*/
-		public ArrayList<String> getMembers(){
+	public ArrayList<String> getMembers(){
 		return members;
 	}
 	
@@ -56,7 +78,7 @@ public class BankAccount{
 		@param amount the amount to be deposited
 		@return the account's balance after the deposit
 	*/
-	public int deposit(int amount){
+	public double deposit(double amount){
 		balance = balance + amount;
 		return balance;
 	}
@@ -66,7 +88,7 @@ public class BankAccount{
 		@param amount the amount to be withdrawn
 		@return whether the withdraw was successful
 	*/
-	public boolean withdraw(int amount){
+	public boolean withdraw(double amount){
 		if(balance >= amount){
 			balance = balance - amount;
 			return true;
@@ -79,12 +101,20 @@ public class BankAccount{
 		Adds a member to the account
 		@param member the member to be added
 	*/
-	public void addMember(String member){
+	public boolean addMember(String member){
 		if(!members.contains(member)){
 			members.add(member);
-		}else{
-			ForgeConomy.mH.showError("Your already a member of that account!", ChatColor.RED, member);
+			return true;
 		}
+		return false;
+	}
+	
+	public boolean removeMember(String member){
+		if(members.contains(member)){
+			members.remove(member);
+			return true;
+		}
+		return false;
 	}
 	
 	/**
