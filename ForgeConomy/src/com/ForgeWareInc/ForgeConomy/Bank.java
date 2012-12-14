@@ -3,8 +3,6 @@ package com.ForgeWareInc.ForgeConomy;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
-import org.bukkit.ChatColor;
-
 public class Bank{
 	
 	private String bankName = "NEW_BANK";
