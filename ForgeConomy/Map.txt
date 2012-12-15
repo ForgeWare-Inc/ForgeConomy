@@ -31,8 +31,8 @@ Commands
 
 	forgeconomy
 	forgeconomy select
-	forgeconomy select bank %bank_name%
-	forgeconomy select account
+	forgeconomy select bank %bank_id%
+	forgeconomy select account %account_id%
 	forgeconomy select wallet
 	forgeconomy bank
 	forgeconomy bank create %bank_name%
@@ -57,10 +57,10 @@ Commands
 	forgeconomy account withdraw max
 	forgeconomy account balance
 	forgeconomy account close
-	forgeconomy account close_confirm
-	forgeconomy account add %player%
-	forgeconomy account remove %player%
+	forgeconomy account close confirm
 	forgeconomy account members
+	forgeconomy account members add %player%
+	forgeconomy account members remove %player%
 	forgeconomy account wire %amount% %destination_account_id%
 	forgeconomy admin
 	forgeconomy admin mode
