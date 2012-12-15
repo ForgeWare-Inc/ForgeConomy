@@ -60,11 +60,11 @@ public final class ForgeConomy extends JavaPlugin implements Listener{
     	if(!args[0].isEmpty()){
         	//determine which sub command was called    	
         	switch(args[0].toLowerCase()){
-        		case "bank" 	:	bank(args, player);
-        		case "account"	:	bankAccount(args, player);
-        		case "shop" 	:	shop(args);
-        		case "econ" 	:	economy(args);
-        		case "economy" 	:	economy(args);
+        		case "bank" 	:	bank(args, player); break;
+        		case "account"	:	bankAccount(args, player); break;
+        		case "shop" 	:	shop(args); break;
+        		case "econ" 	:	economy(args); break;
+        		case "economy" 	:	economy(args); break;
         	}	
     	}
     	return false;
@@ -137,7 +137,7 @@ public final class ForgeConomy extends JavaPlugin implements Listener{
     private void bankAccount(String[] args, Player player){
     	String action = args[2].toLowerCase();
     	switch(action){
-    		case "select"	:	bankSelectAccount(player, args[3]);
+    		case "select"	:	bankSelectAccount(player, args[3]); break;
     	}
     }
     
